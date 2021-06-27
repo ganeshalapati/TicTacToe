@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class TicTacToe {
 	 public static char board[];
@@ -20,7 +21,7 @@ public class TicTacToe {
 	    }
 	    public static void displayBoard()
 	    {
-	        for(int i=0;i<3;gii++)
+	        for(int i=0;i<3;i++)
 	        {
 	            for(int j=0;j<3;j++)
 	            {
@@ -35,6 +36,22 @@ public class TicTacToe {
 	        }
 	        System.out.println("   |   |   ");
 	    }
+	    public static int getUserMove(char[] board, Scanner userInput) {
+	        Integer[] validCells = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+	        while (true) {
+	            System.out.println("What is your next move");
+	            int index = userInput.nextInt();
+	            if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index)) {
+	                return index;
+	            }
+	        }
+
+
+	    }
+
+	    private static boolean isSpaceFree(char[] board, int index) {
+	        return board[index] == ' ';
+	    }
 
 	    public static void main(String[] args)
 	    {
@@ -44,6 +61,10 @@ public class TicTacToe {
 	        char userLetter=getInput(userInput);
 	        char computerLetter=(userLetter=='X')?'0':'X';
 	        System.out.println("computerLetter"+computerLetter);
+	        displayBoard();
+	        int userMove = getUserMove(board, userInput);
+	        userLetter = getInput(userInput);
+	        board[userMove] = userLetter;
 	        displayBoard();
 
 }}
