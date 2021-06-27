@@ -47,6 +47,12 @@ public class TicTacToe {
 	        }
 
 
+	    }private static void checkFreePosition(int userMove)
+	    {
+	        Scanner scan=new Scanner(System.in);
+	        board[userMove]=getInput(scan);
+	        displayBoard();
+
 	    }
 
 	    private static boolean isSpaceFree(char[] board, int index) {
@@ -66,5 +72,7 @@ public class TicTacToe {
 	        userLetter = getInput(userInput);
 	        board[userMove] = userLetter;
 	        displayBoard();
+	        userMove=getUserMove(board,userInput);
+	        checkFreePosition(userMove);
 
 }}
